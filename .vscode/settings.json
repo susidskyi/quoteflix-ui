@@ -1,0 +1,5 @@
+{
+  "prettier.configPath": "/home/pet/quoteflix/quoteflix-ui/.prettierrc",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
