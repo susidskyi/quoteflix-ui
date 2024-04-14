@@ -23,7 +23,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "yarn-upgrade-all": "^0.7.2"
   },
@@ -33,21 +32,15 @@
     "build": "craco build",
     "test:jest": "craco test",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "postinstall": "husky",
     "lint": "eslint --fix --ext .js,.ts,.tsx ./src --color",
     "check-types": "bash -c tsc --project tsconfig.json --noEmit --pretty",
-    "validate": "npm-run-all --parallel check-types && lint-staged"
+    "validate": "yarn check-types && lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "yarn  lint",
       "yarn prettier"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "eslintConfig": {
     "extends": [
