@@ -16,18 +16,19 @@ import MenuIcon from '@mui/icons-material/Menu'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import { YOUTUBE_URL, INSTAGRAM_URL } from '@/config'
+import { appHeaderStyles, appLogoStyles } from './styles'
 
 const SocialLinks = () => {
   return (
     <Stack direction="row" spacing={1}>
       <Tooltip title="Youtube" enterDelay={300}>
         <IconButton component="a" color="inherit" href={YOUTUBE_URL} target="_blank" rel="noopener">
-          <YouTubeIcon fontSize="small" />
+          <YouTubeIcon fontSize="medium" />
         </IconButton>
       </Tooltip>
       <Tooltip title="Instagram" enterDelay={300}>
         <IconButton component="a" color="inherit" href={INSTAGRAM_URL} target="_blank" rel="noopener">
-          <InstagramIcon fontSize="small" />
+          <InstagramIcon fontSize="medium" />
         </IconButton>
       </Tooltip>
     </Stack>
@@ -62,7 +63,7 @@ const MenuLinks = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={appHeaderStyles.headerBox}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -86,9 +87,7 @@ const MenuLinks = () => {
           }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: 'block', md: 'none' }
-          }}>
+          sx={appHeaderStyles.mobileMenu}>
           {navigation.map((page: NavigationItem) => (
             <MenuItem key={page.name} onClick={handleCloseNavMenu}>
               <Button component="a" href={page.path}>
@@ -98,14 +97,14 @@ const MenuLinks = () => {
           ))}
         </Menu>
       </Box>
-      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+      <Box sx={appHeaderStyles.menu}>
         {navigation.map((page: NavigationItem) => (
           <Button
             component="a"
             href={page.path}
             key={page.name}
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'white', display: 'block' }}>
+            sx={appHeaderStyles.navigationItemButton}>
             {page.name}
           </Button>
         ))}
@@ -119,39 +118,12 @@ export const AppHeader = () => {
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}>
+          <Typography variant="h6" noWrap component="a" href="/" sx={appLogoStyles.logoText}>
             LOGO
           </Typography>
 
           <MenuLinks />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none'
-            }}>
+          <Typography variant="h5" noWrap component="a" href="/" sx={appLogoStyles.logoMobileText}>
             LOGO
           </Typography>
 
