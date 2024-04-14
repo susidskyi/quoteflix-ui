@@ -12,7 +12,6 @@
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
-    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -22,15 +21,26 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
     "yarn-upgrade-all": "^0.7.2"
   },
   "scripts": {
     "start": "craco start",
     "start:cli": "cross-env BROWSER=none craco start",
     "build": "craco build",
-    "test": "is-ci \"test:coverage\" \"test:jest\"",
     "test:jest": "craco test",
-    "eject": "craco eject"
+    "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint --fix --ext .js,.ts,.tsx ./src --color",
+    "check-types": "bash -c tsc --project tsconfig.json --noEmit --pretty",
+    "validate": "yarn check-types && lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn  lint",
+      "yarn prettier"
+    ]
   },
   "eslintConfig": {
     "extends": [
