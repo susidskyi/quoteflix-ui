@@ -68,7 +68,12 @@ export const SearchBar = () => {
             disabled={activePhraseIndex === phrases.length - 1 || !activePhrase}>
             <SkipNextIcon />
           </IconButton>
-          <IconButton type="button" disabled={!activePhrase} sx={searchBarStyles.iconButton}>
+          <IconButton
+            component="a"
+            href={activePhrase?.scene_s3_key}
+            aria-label="download"
+            disabled={!activePhrase}
+            sx={searchBarStyles.iconButton}>
             <FileDownloadIcon />
           </IconButton>
         </Paper>

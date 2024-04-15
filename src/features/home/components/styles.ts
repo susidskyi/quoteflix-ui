@@ -37,3 +37,43 @@ export const languageSelectStyles = {
     m: 0
   }
 }
+
+export const videoPlayerStyles = {
+  playerBox: {
+    position: 'relative',
+    height: 'calc(100vh - 129px)',
+    width: '100%',
+    overflow: 'hidden',
+    backgroundColor: '#000000',
+    '& video': {
+      height: '100% !important',
+      width: 'auto !important',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  },
+  player: {
+    height: '100% !important',
+    width: '100vw !important',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 999
+  },
+  pauseButton: {
+    zIndex: 9999,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  pauseIcon: {
+    fontSize: '15vh',
+    color: 'white',
+    opacity: 0.9,
+    zIndex: 9999
+  }
+}
