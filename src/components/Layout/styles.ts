@@ -1,7 +1,8 @@
 export const appHeaderStyles = {
   headerBox: {
     flexGrow: 1,
-    display: { xs: 'flex', md: 'none' }
+    display: { xs: 'flex', md: 'none' },
+    height: '69px'
   },
   menu: {
     flexGrow: 1,
