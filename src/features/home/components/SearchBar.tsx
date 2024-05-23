@@ -5,19 +5,19 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import { SkipNext as SkipNextIcon, SkipPrevious as SkipPreviousIcon } from '@mui/icons-material'
 import { usePhrasesStore } from '@/store/phrases'
 import { LanguageSelect } from './LanguageSelect'
-import { usePhrasesByText } from '../api/getPhrasesByText'
+import { getPhrasesByText } from '../api/getPhrasesByText'
 import { searchBarStyles } from './styles'
 
 export const SearchBar = () => {
   const searchInputRef = React.useRef<HTMLInputElement>(null)
+
   const { setPhrases, setActivePhraseIndex, activePhraseIndex, activePhrase, phrases } = usePhrasesStore()
-  const { refetch } = usePhrasesByText({
-    search_text: searchInputRef.current?.value || '',
-    config: { enabled: false }
-  })
 
   const handleSearch = () => {
-    refetch().then(({ data }) => {
+    getPhrasesByText({
+      search_text: searchInputRef.current?.value || '',
+      config: { enabled: false }
+    }).then((data) => {
       if (data?.length) {
         setPhrases(data)
         setActivePhraseIndex(0)
