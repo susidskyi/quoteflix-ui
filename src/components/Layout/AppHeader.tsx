@@ -1,22 +1,23 @@
-import React from 'react'
 import {
   AppBar,
   Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
   Button,
+  Container,
+  IconButton,
+  Menu,
   MenuItem,
+  Stack,
+  Toolbar,
   Tooltip,
-  Stack
+  Typography
 } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
-import YouTubeIcon from '@mui/icons-material/YouTube'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import { YOUTUBE_URL, INSTAGRAM_URL } from '@/config'
+import { INSTAGRAM_URL, YOUTUBE_URL } from '@/config'
 import { appHeaderStyles, appLogoStyles } from './styles'
+
+import InstagramIcon from '@mui/icons-material/Instagram'
+import MenuIcon from '@mui/icons-material/Menu'
+import React from 'react'
+import YouTubeIcon from '@mui/icons-material/YouTube'
 
 const SocialLinks = () => {
   return (

@@ -1,12 +1,13 @@
-import React from 'react'
 import { Container, FormControl, IconButton, InputBase, Paper, Typography } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import { SkipNext as SkipNextIcon, SkipPrevious as SkipPreviousIcon } from '@mui/icons-material'
-import { usePhrasesStore } from '@/store/phrases'
+
+import FileDownloadIcon from '@mui/icons-material/FileDownload'
 import { LanguageSelect } from './LanguageSelect'
+import React from 'react'
+import SearchIcon from '@mui/icons-material/Search'
 import { getPhrasesByText } from '../api/getPhrasesByText'
 import { searchBarStyles } from './styles'
+import { usePhrasesStore } from '@/store/phrases'
 
 export const SearchBar = () => {
   const searchInputRef = React.useRef<HTMLInputElement>(null)

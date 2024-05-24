@@ -1,10 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
-
-import { axios } from '@/lib/axios'
+import { ExtractFnReturnType, QueryConfig, queryClient } from '@/lib/react-query'
 
 import { Phrase } from '../types'
-import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
-import { queryClient } from '@/lib/react-query'
+import { axios } from '@/lib/axios'
 
 const getPhrasesByTextQuery = (search_text: string): Promise<Phrase[]> => {
   return axios.get('/phrases/get-by-search-text?search_text=' + search_text)

@@ -1,7 +1,7 @@
-import { Suspense } from 'react'
-import { lazyImport } from '@/utils/lazyImport'
 import { MainLayout } from '@/components/Layout/MainLayout'
 import { Outlet } from 'react-router-dom'
+import { Suspense } from 'react'
+import { lazyImport } from '@/utils/lazyImport'
 
 const { Home } = lazyImport(() => import('@/features/home'), 'Home')
 

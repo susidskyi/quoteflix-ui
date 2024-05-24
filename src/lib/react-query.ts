@@ -1,4 +1,5 @@
 import { DefaultOptions, QueryClient, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
+
 import { AxiosError } from 'axios'
 
 const queryConfig: DefaultOptions = {

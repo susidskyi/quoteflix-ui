@@ -1,8 +1,8 @@
+import { Box, IconButton } from '@mui/material'
+
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { IconButton, Box } from '@mui/material'
-import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
-
 import { usePhrasesStore } from '@/store/phrases'
 import { videoPlayerStyles } from './styles'
 

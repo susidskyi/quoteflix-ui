@@ -1,8 +1,8 @@
-import { BrowserRouter as Router } from 'react-router-dom'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material'
-import { theme } from '@/theme'
 import { queryClient } from '@/lib/react-query'
+import { theme } from '@/theme'
 
 type AppProviderProps = {
   children: React.ReactNode

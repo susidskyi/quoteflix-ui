@@ -1,5 +1,6 @@
-import React from 'react'
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+
+import React from 'react'
 import { languageSelectStyles } from './styles'
 
 export const LanguageSelect = () => {
