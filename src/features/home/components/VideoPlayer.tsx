@@ -1,4 +1,4 @@
-import { Box, IconButton } from '@mui/material'
+import { Box, IconButton, Typography } from '@mui/material'
 
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import React from 'react'
@@ -35,7 +35,15 @@ export const VideoPlayer = () => {
         onEnded={playNextVideo}
         onClick={togglePauseVideo}
         url={activePhrase?.scene_s3_key}
+        style={{ cursor: 'pointer' }}
       />
+      <Box sx={videoPlayerStyles.subtitleBox}>
+        {activePhrase?.full_text.split('\n').map((line, index) => (
+          <Typography key={index} variant="body1" sx={videoPlayerStyles.subtitleText}>
+            {line}
+          </Typography>
+        ))}
+      </Box>
     </Box>
   )
 }
