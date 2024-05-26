@@ -44,12 +44,16 @@ type NavigationItem = {
 const MenuLinks = () => {
   const navigation: NavigationItem[] = [
     {
-      name: 'About',
-      path: '/about'
+      name: 'Movies',
+      path: ''
     },
     {
-      name: 'Contact',
-      path: '/contact'
+      name: 'Books',
+      path: '/books'
+    },
+    {
+      name: 'Music',
+      path: '/music'
     }
   ]
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -120,12 +124,12 @@ export const AppHeader = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography variant="h6" noWrap component="a" href="/" sx={appLogoStyles.logoText}>
-            LOGO
+            PhraseGO
           </Typography>
 
           <MenuLinks />
           <Typography variant="h5" noWrap component="a" href="/" sx={appLogoStyles.logoMobileText}>
-            LOGO
+            PhraseGO
           </Typography>
 
           <SocialLinks />

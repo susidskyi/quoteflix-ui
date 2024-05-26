@@ -82,13 +82,14 @@ export const videoPlayerStyles = {
     left: '50%',
     transform: 'translate(-50%, -5%)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '5px'
+    padding: '5px',
+    borderRadius: '5px'
   },
   subtitleText: {
     fontWeight: 'bold',
     textAlign: 'center',
     opacity: 0.8,
-    fontSize: '25px',
+    fontSize: '1.5rem',
     color: '#fafafa'
   }
 }

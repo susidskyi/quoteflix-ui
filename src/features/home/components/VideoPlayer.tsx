@@ -7,14 +7,14 @@ import { usePhrasesStore } from '@/store/phrases'
 import { videoPlayerStyles } from './styles'
 
 export const VideoPlayer = () => {
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(false)
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(true)
   const { activePhrase, setActivePhraseIndex, activePhraseIndex } = usePhrasesStore()
 
-  const togglePauseVideo = () => {
+  const togglePauseVideo = React.useCallback(() => {
     if (activePhrase) {
       setIsPlaying((prevPlaying) => !prevPlaying)
     }
-  }
+  }, [setIsPlaying, activePhrase])
 
   const playNextVideo = () => {
     setActivePhraseIndex(activePhraseIndex + 1)
