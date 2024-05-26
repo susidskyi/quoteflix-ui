@@ -1,14 +1,17 @@
 import { Box, IconButton, Typography } from '@mui/material'
 
+import { PHRASES_PAGE_SIZE } from '@/config'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
 import React from 'react'
 import ReactPlayer from 'react-player'
+import { getPhrasesByText } from '../api/getPhrasesByText'
 import { usePhrasesStore } from '@/store/phrases'
 import { videoPlayerStyles } from './styles'
 
 export const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = React.useState<boolean>(true)
-  const { activePhrase, setActivePhraseIndex, activePhraseIndex } = usePhrasesStore()
+  const { activePhrase, setActivePhraseIndex, activePhraseIndex, phrases, totalPhrases, searchText, setPhrases } =
+    usePhrasesStore()
 
   const togglePauseVideo = React.useCallback(() => {
     if (activePhrase) {
@@ -16,8 +19,23 @@ export const VideoPlayer = () => {
     }
   }, [setIsPlaying, activePhrase])
 
+  // TODO: set pause if no next video
+  // TODO: resolve playing when new videos loaded, but it was paused due to loading time
   const playNextVideo = () => {
-    setActivePhraseIndex(activePhraseIndex + 1)
+    const currentPhrasesLength = phrases.length
+    const nextIndex = activePhraseIndex + 1
+    setActivePhraseIndex(nextIndex)
+
+    if (currentPhrasesLength < totalPhrases && currentPhrasesLength - nextIndex <= PHRASES_PAGE_SIZE) {
+      // TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
+      getPhrasesByText({
+        search_text: searchText,
+        page: Math.floor(nextIndex / PHRASES_PAGE_SIZE) + 2,
+        config: { enabled: false }
+      }).then((phrasesData) => {
+        setPhrases(phrasesData, false)
+      })
+    }
   }
 
   return (
