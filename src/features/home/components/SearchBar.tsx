@@ -10,11 +10,6 @@ import { getPhrasesByText } from '../api/getPhrasesByText'
 import { searchBarStyles } from './styles'
 import { usePhrasesStore } from '@/store/phrases'
 
-// TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
-// TODO: set pause if no next video
-// TODO: resolve playing when new videos loaded, but it was paused due to loading time
-// TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
-// BOTH setPhrases run
 export const SearchBar = () => {
   const searchInputRef = React.useRef<HTMLInputElement>(null)
 

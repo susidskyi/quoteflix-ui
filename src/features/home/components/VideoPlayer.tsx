@@ -8,7 +8,7 @@ import { videoPlayerStyles } from './styles'
 
 export const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = React.useState<boolean>(true)
-  const { activePhrase, setActivePhraseIndex, activePhraseIndex } = usePhrasesStore()
+  const { activePhrase, setActivePhraseIndex, activePhraseIndex, totalPhrases } = usePhrasesStore()
 
   const togglePauseVideo = React.useCallback(() => {
     if (activePhrase) {
@@ -18,6 +18,9 @@ export const VideoPlayer = () => {
 
   const playNextVideo = () => {
     const nextIndex = activePhraseIndex + 1
+    if (nextIndex === totalPhrases) {
+      setIsPlaying(false)
+    }
     setActivePhraseIndex(nextIndex)
   }
 
