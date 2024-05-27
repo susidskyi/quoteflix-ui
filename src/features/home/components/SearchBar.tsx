@@ -10,41 +10,62 @@ import { getPhrasesByText } from '../api/getPhrasesByText'
 import { searchBarStyles } from './styles'
 import { usePhrasesStore } from '@/store/phrases'
 
+// TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
+// TODO: set pause if no next video
+// TODO: resolve playing when new videos loaded, but it was paused due to loading time
+// TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
+// BOTH setPhrases run
 export const SearchBar = () => {
   const searchInputRef = React.useRef<HTMLInputElement>(null)
 
-  const { setPhrases, setActivePhraseIndex, activePhraseIndex, activePhrase, phrases, totalPhrases, setSearchText } =
-    usePhrasesStore()
+  const {
+    setPhrases,
+    setActivePhraseIndex,
+    activePhraseIndex,
+    activePhrase,
+    phrases,
+    totalPhrases,
+    lastLoadedPage,
+    setLastLoadedPage,
+    setSearchText,
+    searchText
+  } = usePhrasesStore()
 
   const handleSearch = () => {
-    const searchText = searchInputRef.current?.value?.trim()
+    const currentSearchText = searchInputRef.current?.value?.trim()
 
-    if (searchText) {
+    if (currentSearchText) {
+      setSearchText(currentSearchText)
       getPhrasesByText({
         search_text: searchInputRef.current?.value || '',
         page: 1,
         config: { enabled: false }
       }).then((phrasesData) => {
         setPhrases(phrasesData, true)
-        setSearchText(searchText)
+        setSearchText(currentSearchText)
       })
     }
   }
 
-  const handleChangePhrase = (index: number) => {
+  React.useEffect(() => {
     const currentPhrasesLength = phrases.length
-    setActivePhraseIndex(index)
+    const pageToLoad = Math.floor(activePhraseIndex / PHRASES_PAGE_SIZE) + 2
 
-    if (currentPhrasesLength < totalPhrases && currentPhrasesLength - index <= PHRASES_PAGE_SIZE) {
-      // TODO: UPDATE TO NOT WAIT FOR NEW PHRASES WHILE CHANGING PHRASE
+    if (currentPhrasesLength < totalPhrases && pageToLoad > lastLoadedPage) {
+      setLastLoadedPage(pageToLoad)
+
       getPhrasesByText({
-        search_text: searchInputRef.current?.value || '',
-        page: Math.floor(index / PHRASES_PAGE_SIZE) + 2,
+        search_text: searchText,
+        page: pageToLoad,
         config: { enabled: false }
       }).then((phrasesData) => {
         setPhrases(phrasesData, false)
       })
     }
+  }, [activePhraseIndex, totalPhrases, lastLoadedPage, phrases, setPhrases, searchText, setLastLoadedPage])
+
+  const handleChangePhrase = (index: number) => {
+    setActivePhraseIndex(index)
   }
 
   return (

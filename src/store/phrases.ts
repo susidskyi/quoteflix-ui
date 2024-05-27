@@ -21,10 +21,12 @@ type PhrasesStore = {
   activePhrase?: Phrase
   totalPhrases: number
   activePhraseIndex: number
+  lastLoadedPage: number
   searchText: string
   setPhrases: (phrasesData: PaginatedPhrases, reset?: boolean) => void
   setActivePhrase: (phrase: Phrase) => void
   setActivePhraseIndex: (index: number) => void
+  setLastLoadedPage: (page: number) => void
   setSearchText: (searchText: string) => void
 }
 
@@ -35,7 +37,8 @@ const handleSetPhrases = (phrasesData: PaginatedPhrases, state: PhrasesStore, re
         phrases: phrasesData.items,
         activePhrase: phrasesData.items[0],
         totalPhrases: phrasesData.total,
-        activePhraseIndex: 0
+        activePhraseIndex: 0,
+        lastLoadedPage: 1
       }
     }
     return {
@@ -48,6 +51,7 @@ const handleSetPhrases = (phrasesData: PaginatedPhrases, state: PhrasesStore, re
     activePhrase: undefined,
     totalPhrases: 0,
     activePhraseIndex: 0,
+    lastLoadedPage: 1,
     searchText: ''
   }
 }
@@ -65,9 +69,11 @@ export const usePhrasesStore = create<PhrasesStore>((set) => ({
   activePhraseIndex: 0,
   activePhrase: undefined,
   totalPhrases: 0,
+  lastLoadedPage: 1,
   searchText: '',
   setPhrases: (phrasesData, reset) => set((state) => handleSetPhrases(phrasesData, state, reset)),
   setActivePhrase: (phrase) => set({ activePhrase: phrase }),
   setActivePhraseIndex: (index) => set((state) => handleSetActivePhraseIndex(index, state)),
-  setSearchText: (searchText) => set({ searchText })
+  setLastLoadedPage: (page) => set({ lastLoadedPage: page }),
+  setSearchText: (searchText) => set({ searchText: searchText })
 }))
