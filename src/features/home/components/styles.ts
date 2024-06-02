@@ -75,7 +75,10 @@ export const videoPlayerStyles = {
     color: 'white',
     opacity: 0.9,
     zIndex: 9999
-  },
+  }
+}
+
+export const subtitlesStyles = {
   subtitleBox: {
     position: 'absolute',
     bottom: '5%',
@@ -91,5 +94,12 @@ export const videoPlayerStyles = {
     opacity: 0.8,
     fontSize: '1.5rem',
     color: '#fafafa'
+  },
+  matchedSubtitleText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    opacity: 0.8,
+    fontSize: '1.5rem',
+    color: '#FFFF00'
   }
 }
