@@ -1,17 +1,20 @@
-import { Container, FormControl, IconButton, InputBase, Paper, Typography } from '@mui/material'
+import { Container, FormControl, IconButton, InputBase, Paper, Tooltip, Typography } from '@mui/material'
 import { SkipNext as SkipNextIcon, SkipPrevious as SkipPreviousIcon } from '@mui/icons-material'
 
 import FileDownloadIcon from '@mui/icons-material/FileDownload'
+import FlagIcon from '@mui/icons-material/Flag'
 import { LanguageSelect } from './LanguageSelect'
 import { PHRASES_PAGE_SIZE } from '@/config'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import { getPhrasesByText } from '../api/getPhrasesByText'
 import { searchBarStyles } from './styles'
+import { sendPhraseIssueReport } from '../api/sendPhraseIssueReport'
 import { usePhrasesStore } from '@/store/phrases'
 
 export const SearchBar = () => {
   const searchInputRef = React.useRef<HTMLInputElement>(null)
+  const [reportedIssues, setReportedIssues] = React.useState<string[]>([])
 
   const {
     setPhrases,
@@ -63,6 +66,15 @@ export const SearchBar = () => {
     setActivePhraseIndex(index)
   }
 
+  const handleReportIssue = () => {
+    const activePhraseId = activePhrase?.id
+
+    if (activePhraseId && !reportedIssues.includes(activePhraseId)) {
+      setReportedIssues([...reportedIssues, activePhraseId])
+      sendPhraseIssueReport({ phraseId: activePhraseId })
+    }
+  }
+
   return (
     <Container maxWidth={false}>
       <FormControl fullWidth sx={searchBarStyles.formControl}>
@@ -80,36 +92,54 @@ export const SearchBar = () => {
             placeholder="Type a phrase"
             inputRef={searchInputRef}
           />
-          <IconButton type="button" sx={searchBarStyles.iconButton} aria-label="search" onClick={handleSearch}>
-            <SearchIcon />
-          </IconButton>
-          <IconButton
-            type="button"
-            onClick={() => handleChangePhrase(activePhraseIndex - 1)}
-            sx={searchBarStyles.iconButton}
-            aria-label="previous"
-            disabled={activePhraseIndex === 0 || !activePhrase}>
-            <SkipPreviousIcon />
-          </IconButton>
+          <Tooltip title="Search" placement="top">
+            <IconButton type="button" sx={searchBarStyles.iconButton} aria-label="search" onClick={handleSearch}>
+              <SearchIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Previous" placement="top">
+            <IconButton
+              type="button"
+              onClick={() => handleChangePhrase(activePhraseIndex - 1)}
+              sx={searchBarStyles.iconButton}
+              aria-label="previous"
+              disabled={activePhraseIndex === 0 || !activePhrase}>
+              <SkipPreviousIcon />
+            </IconButton>
+          </Tooltip>
           <Typography variant="body1" sx={searchBarStyles.itemCounterText}>
             {activePhrase ? activePhraseIndex + 1 : 0} / {totalPhrases}
           </Typography>
-          <IconButton
-            type="button"
-            onClick={() => handleChangePhrase(activePhraseIndex + 1)}
-            sx={searchBarStyles.iconButton}
-            aria-label="next"
-            disabled={activePhraseIndex === phrases.length - 1 || !activePhrase}>
-            <SkipNextIcon />
-          </IconButton>
-          <IconButton
-            component="a"
-            href={activePhrase?.scene_s3_key}
-            aria-label="download"
-            disabled={!activePhrase}
-            sx={searchBarStyles.iconButton}>
-            <FileDownloadIcon />
-          </IconButton>
+          <Tooltip title="Next" placement="top">
+            <IconButton
+              type="button"
+              onClick={() => handleChangePhrase(activePhraseIndex + 1)}
+              sx={searchBarStyles.iconButton}
+              aria-label="next"
+              disabled={activePhraseIndex === phrases.length - 1 || !activePhrase}>
+              <SkipNextIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Download" placement="top">
+            <IconButton
+              component="a"
+              href={activePhrase?.scene_s3_key}
+              aria-label="download"
+              disabled={!activePhrase}
+              sx={searchBarStyles.iconButton}>
+              <FileDownloadIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Report a problem" placement="top">
+            <IconButton
+              type="button"
+              onClick={handleReportIssue}
+              sx={searchBarStyles.iconButton}
+              aria-label="Report a problem"
+              disabled={activePhrase && reportedIssues.includes(activePhrase.id)}>
+              <FlagIcon />
+            </IconButton>
+          </Tooltip>
         </Paper>
       </FormControl>
     </Container>

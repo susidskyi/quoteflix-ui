@@ -86,7 +86,8 @@ export const subtitlesStyles = {
     transform: 'translate(-50%, -5%)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: '5px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    textAlign: 'center'
   },
   subtitleText: {
     fontWeight: 'bold',

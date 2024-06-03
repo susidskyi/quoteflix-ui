@@ -9,13 +9,13 @@ const getPhrasesByTextQuery = (search_text: string, page: number): Promise<Pagin
 
 type QueryFnType = typeof getPhrasesByTextQuery
 
-type UsePhrasesByTextOptions = {
+type GetPhrasesByTextOptions = {
   search_text: string
   page: number
   config?: QueryConfig<QueryFnType>
 }
 
-export const getPhrasesByText = ({ search_text, page, config = {} }: UsePhrasesByTextOptions) => {
+export const getPhrasesByText = ({ search_text, page, config = {} }: GetPhrasesByTextOptions) => {
   return queryClient.fetchQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: ['phrases-by-text', search_text, page],
