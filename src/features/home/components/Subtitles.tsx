@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 
+import { Phrase } from '../types'
 import React from 'react'
 import { subtitlesStyles } from './styles'
 
@@ -22,7 +23,9 @@ const SubtitleText = ({ text, styles }: { text: string; styles: any }) => {
   )
 }
 
-export const Subtitles = ({ fullText, matchedPhrase }: { fullText: string; matchedPhrase: string }) => {
+export const Subtitles = ({ activePhrase }: { activePhrase: Phrase }) => {
+  const { full_text: fullText, matched_phrase: matchedPhrase, movie } = activePhrase
+
   const firstPart = fullText.slice(0, fullText.indexOf(matchedPhrase))
   const secondPart = fullText.slice(fullText.indexOf(matchedPhrase) + matchedPhrase.length)
 
@@ -31,6 +34,9 @@ export const Subtitles = ({ fullText, matchedPhrase }: { fullText: string; match
       <SubtitleText text={firstPart} styles={subtitlesStyles.subtitleText} />
       <SubtitleText text={matchedPhrase} styles={subtitlesStyles.matchedSubtitleText} />
       <SubtitleText text={secondPart} styles={subtitlesStyles.subtitleText} />
+      <Typography variant="body1" sx={subtitlesStyles.movieTitle}>
+        {movie.title} ({movie.year})
+      </Typography>
     </Box>
   )
 }

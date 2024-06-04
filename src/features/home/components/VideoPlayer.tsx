@@ -42,7 +42,7 @@ export const VideoPlayer = () => {
         url={activePhrase?.scene_s3_key}
         style={{ cursor: 'pointer' }}
       />
-      {activePhrase && <Subtitles fullText={activePhrase?.full_text} matchedPhrase={activePhrase?.matched_phrase} />}
+      {activePhrase && <Subtitles activePhrase={activePhrase} />}
     </Box>
   )
 }

@@ -81,11 +81,13 @@ export const videoPlayerStyles = {
 export const subtitlesStyles = {
   subtitleBox: {
     position: 'absolute',
-    bottom: '5%',
+    bottom: '4%',
     left: '50%',
-    transform: 'translate(-50%, -5%)',
+    maxWidth: '90%',
+    width: 'max-content',
+    transform: 'translate(-50%, -4%)',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '5px',
+    padding: '5px 10px',
     borderRadius: '5px',
     textAlign: 'center'
   },
@@ -102,5 +104,13 @@ export const subtitlesStyles = {
     opacity: 0.8,
     fontSize: '1.5rem',
     color: '#FFFF00'
+  },
+  movieTitle: {
+    textAlign: 'center',
+    opacity: 0.8,
+    color: '#ffffff',
+    borderTop: '1px solid #ffffff',
+    padding: '3px 5px 3px 5px',
+    fontSize: '16px'
   }
 }
