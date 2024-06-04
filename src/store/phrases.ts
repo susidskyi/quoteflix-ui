@@ -1,8 +1,14 @@
 import { create } from 'zustand'
 
+export type Movie = {
+  id: string
+  title: string
+  year: number
+}
+
 export type Phrase = {
   id: string
-  movie_id: string
+  movie: Movie
   full_text: string
   scene_s3_key: string
   matched_phrase: string

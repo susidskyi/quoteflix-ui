@@ -1,7 +1,12 @@
 import { BaseEntity } from '@/types'
 
+export type Movie = BaseEntity & {
+  title: string
+  year: number
+}
+
 export type Phrase = BaseEntity & {
-  movie_id: string
+  movie: Movie
   full_text: string
   scene_s3_key: string
   matched_phrase: string
