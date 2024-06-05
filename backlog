@@ -2,3 +2,4 @@ Resolve playing when new videos loaded, but it was paused due to waiting for loa
 Investigate and set staletime for react query
 Investigate what to do with expired movies
 Check all text fonts and overflows it
+Investigate what color scheme is the best

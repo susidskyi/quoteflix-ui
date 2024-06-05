@@ -44,7 +44,7 @@ export const videoPlayerStyles = {
     height: 'calc(100vh - 129px)',
     width: '100%',
     overflow: 'hidden',
-    backgroundColor: '#000000',
+    backgroundColor: '#202124',
     '& video': {
       height: '100% !important',
       width: 'auto !important',
