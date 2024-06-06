@@ -10,6 +10,7 @@ export type Phrase = {
   id: string
   movie: Movie
   full_text: string
+  start_in_movie: string
   scene_s3_key: string
   matched_phrase: string
 }

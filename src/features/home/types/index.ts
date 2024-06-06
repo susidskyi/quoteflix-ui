@@ -9,6 +9,7 @@ export type Phrase = BaseEntity & {
   movie: Movie
   full_text: string
   scene_s3_key: string
+  start_in_movie: string
   matched_phrase: string
 }
 
