@@ -24,7 +24,7 @@ const SubtitleText = ({ text, styles }: { text: string; styles: any }) => {
 }
 
 export const Subtitles = ({ activePhrase }: { activePhrase: Phrase }) => {
-  const { full_text: fullText, matched_phrase: matchedPhrase, movie } = activePhrase
+  const { full_text: fullText, matched_phrase: matchedPhrase } = activePhrase
 
   const firstPart = fullText.slice(0, fullText.indexOf(matchedPhrase))
   const secondPart = fullText.slice(fullText.indexOf(matchedPhrase) + matchedPhrase.length)
@@ -34,9 +34,6 @@ export const Subtitles = ({ activePhrase }: { activePhrase: Phrase }) => {
       <SubtitleText text={firstPart} styles={subtitlesStyles.subtitleText} />
       <SubtitleText text={matchedPhrase} styles={subtitlesStyles.matchedSubtitleText} />
       <SubtitleText text={secondPart} styles={subtitlesStyles.subtitleText} />
-      <Typography variant="body1" sx={subtitlesStyles.movieTitle}>
-        {movie.title} ({movie.year})
-      </Typography>
     </Box>
   )
 }
